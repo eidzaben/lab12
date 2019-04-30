@@ -113,6 +113,7 @@ public class DataEntryFrame extends JFrame
 	    phone.setText(data.getPhone());
 	    email.setText(data.getEmail());
 	    address.setText(data.getAddress());
+	    spanel.setSignature(data.getSignature());
 	    
 	}
 	
@@ -143,9 +144,6 @@ public class DataEntryFrame extends JFrame
 		this.add(formSelect);
 
 		// TODO: add in all form-fillable components:
-		
-		//WHUT
-		
 		
 		
 		JPanel formFill = new JPanel(/* TODO: add layout manager */new GridLayout(8,2));
@@ -201,6 +199,7 @@ public class DataEntryFrame extends JFrame
 			newData.setValues("fn", 'm', "ln", "dn", "111111111", "1234567890",
 					"test@ou.edu", "111 first st", new ArrayList<Point>());
 			datalist.add(newData);
+			
 			int select = datalist.size() - 1;
 			DefaultComboBoxModel<String> newComboBoxModel = getComboBoxModel(datalist);
 			formSelect.setModel(newComboBoxModel);
@@ -216,7 +215,9 @@ public class DataEntryFrame extends JFrame
 			// of the selected FormData object.
 		
 			FormData saveData = datalist.get(select);
-			if(saveData.setValues(firstName.getText(), middleInitial.getText().charAt(0), lastName.getText(), displayName.getText(), SSN.getText(), phone.getText(), email.getText(), address.getText(), spanel.getSignature())) {
+			if(saveData.setValues(firstName.getText(), middleInitial.getText().charAt(0), lastName.getText(), 
+			        displayName.getText(), SSN.getText(), phone.getText(), email.getText(), address.getText(), 
+			        spanel.getSignature())) {
 			    success = true;
 			}
 			else {
@@ -224,7 +225,7 @@ public class DataEntryFrame extends JFrame
 			}
 			
 		//	datalist.set(select, saveData);
-			success = true;
+		//	success = true;
 			
 			//datalist.set(select, );
 
@@ -279,6 +280,7 @@ public class DataEntryFrame extends JFrame
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {
 		       //System.out.println("You chose to open this file: " +
 		            String fileName = chooser.getSelectedFile().getName();
+		            //File file = new FileInputStream(filename);
 		           try
                 {
                     FileInputStream fis = new FileInputStream(fileName);
